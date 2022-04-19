@@ -20,8 +20,8 @@
 */
 
 
-volatile byte ss = 'p'; //点灯時間決定数値
-int releaseStatus = LOW; //レリーズ要求スイッチの状態
+volatile byte ss = 'p';
+int releaseStatus = LOW;
 int resetStatus = LOW;
 volatile int rotaryStatus1 = LOW;
 volatile int rotaryStatus2 = LOW;
@@ -41,17 +41,17 @@ const int rotarySw6 = 10;
 const int soundPin = 19;
 int soundStatus = 0;
 
-//発光用変数
+// ver for bright
 int startT = 0;
 int waitT = 0;
 int nowT = 0;
 
-//マスター要求用変数
+// var for request for master
 int freezeNowT = 0;
 int freezeT = 0;
 int freezeStartT = 0;
 
-//releasePin入力
+// releasePin input
 const int releasePin = 2;
 int LBS = LOW;
 long LDT = 0;
@@ -59,21 +59,21 @@ long DD = 50;
 long DDB = 100;
 //volatile byte releaseStatus = 0;
 
-//resetPin入力
+// resetPin input
 const int resetPin = 3;
 int LBS2 = LOW;
 long LDT2 = 0;
 //volatile byte resetStatus = 0;
 
-//外部release入力
+// release input
 const int releaseInPin = 10;
 int LBS3 = LOW;
 long LDT3 = 0;
 volatile int releaseInStatus = 0;
 
-int v = 0; //発光要求権利
+int v = 0;
 
-volatile int extra = 0;
+int extra = 0;
 
 const int LEDPin = 11;
 
@@ -88,7 +88,7 @@ int lastDoubleSendDT = 0;
 
 int now6 = 0;
 
-int offPermitState = LOW; //レリーズ用OFF許可変数
+int offPermitState = LOW;
 int releaseStartT = 0;
 
 
@@ -106,7 +106,6 @@ void setup() {
   pinMode(rotarySw6, INPUT_PULLUP);
 
   pinMode(LEDPin, OUTPUT);
-  //外部release入力
   pinMode(releaseInPin, INPUT);
 
   pinMode(soundPin, OUTPUT);
@@ -121,33 +120,10 @@ void loop() {
     digitalWrite(soundPin, LOW);
   }
 
-  //release入力端子
+  // release
   int releaseSelect = !digitalRead(rotarySw6);
   if (releaseSelect == LOW) {
-    /*
-      int releaseInStatus = !digitalRead(releaseInPin);
-      if (LBS3 == LOW && releaseInStatus == HIGH) {
-      now6 = millis();
-      if ((now6 - LDT3) > DDB) {
-        Serial.print('l');
-        doubleSendl = 5;
-        lastDoubleSendlT = millis();
-        offPermitState = HIGH;
-        releaseStartT = millis();
-      }
-      LDT3 = now6;
-      }
-      int now8 = millis();
-      if (offPermitState == HIGH && (now8 - releaseStartT) > 200) {
-      if (releaseInStatus == LOW) {
-        Serial.print('D');
-        doubleSendD = 5;
-        lastDoubleSendDT = millis();
-        offPermitState = LOW;
-      }
-      }
-      LBS3 = releaseInStatus;
-    */
+    
     int releaseInStatus = !digitalRead(releaseInPin);
     if (LBS3 == LOW && releaseInStatus == HIGH) {
       int now6 = millis();
@@ -162,7 +138,7 @@ void loop() {
     LBS3 = releaseInStatus;
   }
 
-  else if (releaseSelect == HIGH) { //自動レリーズ使用
+  else if (releaseSelect == HIGH) { // auto mode
     int releaseInStatus = !digitalRead(releaseInPin);
     if (LBS3 == LOW && releaseInStatus == HIGH) {
       Serial.print('l');
@@ -177,9 +153,9 @@ void loop() {
     LBS3 = releaseInStatus;
   }
 
-  if (Serial.available() > 0) { // データの受信を確認
+  if (Serial.available() > 0) {
     ss = Serial.read();
-    if (ss == 'Z') { //強制終了コマンド"Z"の入力
+    if (ss == 'Z') { 
       waitT = 0;
       ss = 'p';
       extra = 0;
@@ -342,9 +318,8 @@ void loop() {
   rotaryStatus3 = !digitalRead(rotarySw3);
   rotaryStatus4 = !digitalRead(rotarySw4);
   rotaryStatus5 = !digitalRead(rotarySw5);
-  //rotaryStatus6 = !digitalRead(rotarySw6); //レリーズ状態設定用に変更
 
-  //release要求スイッチ入力
+  // request release sw
   int releaseStatus = !digitalRead(releasePin);
   if (LBS == LOW && releaseStatus == HIGH) {
     int now = millis();
@@ -371,7 +346,7 @@ void loop() {
   }
   LBS = releaseStatus;
 
-  //reset入力
+  // reset input
   int resetStatus = !digitalRead(resetPin);
   if (LBS2 == LOW && resetStatus == HIGH) {
     int now2 = millis();
@@ -383,7 +358,7 @@ void loop() {
   LBS2 = resetStatus;
 
   freezeNowT = millis();
-  if (v == 1) { //レリーズ送信
+  if (v == 1) {
     if ((freezeNowT - freezeStartT) > freezeT) {
       freezeNowT = 0;
       freezeStartT = 0;

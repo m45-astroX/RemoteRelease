@@ -26,10 +26,10 @@
 #define ENC_A 2
 #define ENC_B 3
 
-volatile byte pos;
-volatile byte enc_count = 51;
-volatile byte pos2;
-volatile byte enc_count2 = 51;
+byte pos;
+byte enc_count = 51;
+byte pos2;
+byte enc_count2 = 51;
 
 // releasePin input
 const int releasePin = 5;
@@ -42,7 +42,7 @@ volatile byte releaseStatus = 0;
 const int resetPin = 6;
 int LBS2 = LOW;
 long LDT2 = 0;
-volatile byte resetStatus = 0;
+byte resetStatus = 0;
 
 // LightingPin input
 const int lightingPin = 7;
@@ -61,9 +61,9 @@ const int releaseOutPin = 10;
 
 // var
 const int intSelectPin = 4;
-volatile int intSelectStatus = LOW;
-volatile int extra = 0;
 const int LEDPin = 11;
+int intSelectStatus = LOW;
+int extra = 0;
 int lastLEDT = 0;
 int lastMyLEDT = 0;
 
@@ -136,198 +136,66 @@ void loop() {
       d = 1;
       startLightingT = millis();
 
-      if (enc_count2 == 1) {
-        waitST = 20000;
-        extra = 21;
-      }
-      else if (enc_count2 == 2) {
-        waitST = 30000;
-        extra = 19;
-      }
-      else if (enc_count2 == 3) {
-        waitST = 10000;
-        extra = 18;
-      }
-      else if (enc_count2 == 4) {
-        waitST = 20000;
-        extra = 16;
-      }
-      else if (enc_count2 == 5) {
-        waitST = 30000;
-        extra = 15;
-      }
-      else if (enc_count2 == 6) {
-        waitST = 10000;
-        extra = 15;
-      }
-      else if (enc_count2 == 7) {
-        waitST = 20000;
-        extra = 14;
-      }
-      else if (enc_count2 == 8) {
-        waitST = 30000;
-        extra = 13;
-      }
-      else if (enc_count2 == 9) {
-        waitST = 10000;
-        extra = 13;
-      }
-      else if (enc_count2 == 10) {
-        waitST = 20000;
-        extra = 12;
-      }
-      else if (enc_count2 == 11) {
-        waitST = 30000;
-        extra = 11;
-      }
-      else if (enc_count2 == 12) {
-        waitST = 10000;
-        extra = 11;
-      }
-      else if (enc_count2 == 13) {
-        waitST = 20000;
-        extra = 10;
-      }
-      else if (enc_count2 == 14) {
-        waitST = 30000;
-        extra = 9;
-      }
-      else if (enc_count2 == 15) {
-        waitST = 10000;
-        extra = 9;
-      }
-      else if (enc_count2 == 16) {
-        waitST = 20000;
-        extra = 8;
-      }
-      else if (enc_count2 == 17) {
-        waitST = 30000;
-        extra = 7;
-      }
-      else if (enc_count2 == 18) {
-        waitST = 10000;
-        extra = 7;
-      }
-      else if (enc_count2 == 19) {
-        waitST = 20000;
-        extra = 6;
-      }
-      else if (enc_count2 == 20) {
-        waitST = 10000;
-        extra = 6;
-      }
-      else if (enc_count2 == 21) {
-        waitST = 30000;
-        extra = 5;
-      }
-      else if (enc_count2 == 22) {
-        waitST = 20000;
-        extra = 5;
-      }
-      else if (enc_count2 == 23) {
-        waitST = 10000;
-        extra = 5;
-      }
-      else if (enc_count2 == 24) {
-        waitST = 30000;
-        extra = 4;
-      }
-      else if (enc_count2 == 25) {
-        waitST = 20000;
-        extra = 4;
-      }
-      else if (enc_count2 == 26) {
-        waitST = 10000;
-        extra = 4;
-      }
-      else if (enc_count2 == 27) {
-        waitST = 30000;
-        extra = 3;
-      }
-      else if (enc_count2 == 28) {
-        waitST = 20000;
-        extra = 3;
-      }
-      else if (enc_count2 == 29) {
-        waitST = 10000;
-        extra = 3;
-      }
-      else if (enc_count2 == 30) {
-        waitST = 30000;
-        extra = 2;
-      }
-      else if (enc_count2 == 31) {
-        waitST = 20000;
-        extra = 2;
-      }
-      else if (enc_count2 == 32) {
-        waitST = 10000;
-        extra = 2;
-      }
-      else if (enc_count2 == 33) {
-        waitST = 30000;
-        extra = 1;
-      }
-      else if (enc_count2 == 34) {
-        waitST = 20000;
-        extra = 1;
-      }
-      else if (enc_count2 == 35) {
-        waitST = 10000;
-        extra = 1;
-      }
-      else if (enc_count2 == 36) {
-        waitST = 30000;
-      }
-      else if (enc_count2 == 37) {
-        waitST = 25000;
-      }
-      else if (enc_count2 == 38) {
-        waitST = 20000;
-      }
-      else if (enc_count2 == 39) {
-        waitST = 15000;
-      }
-      else if (enc_count2 == 40) {
-        waitST = 13000;
-      }
-      else if (enc_count2 == 41) {
-        waitST = 10000;
-      }
-      else if (enc_count2 == 42) {
-        waitST = 8000;
-      }
-      else if (enc_count2 == 43) {
-        waitST = 6000;
-      }
-      else if (enc_count2 == 44) {
-        waitST = 5000;
-      }
-      else if (enc_count2 == 45) {
-        waitST = 4000;
-      }
-      else if (enc_count2 == 46) {
-        waitST = 3000;
-      }
-      else if (enc_count2 == 47) {
-        waitST = 2500;
-      }
-      else if (enc_count2 == 48) {
-        waitST = 2000;
-      }
-      else if (enc_count2 == 49) {
-        waitST = 1600;
-      }
-      else if (enc_count2 == 50) {
-        waitST = 1300;
-      }
-      else if (enc_count2 == 51) {
-        waitST = 1000;
-      }
+      if (enc_count2 == 1) { waitST = 20000; extra = 21; }
+      else if (enc_count2 == 2) { waitST = 30000; extra = 19; }
+      else if (enc_count2 == 3) { waitST = 10000; extra = 18; }
+      else if (enc_count2 == 4) { waitST = 20000; extra = 16; }
+      else if (enc_count2 == 5) { waitST = 30000; extra = 15; }
+      else if (enc_count2 == 6) { waitST = 10000; extra = 15; }
+      else if (enc_count2 == 7) { waitST = 20000; extra = 14; }
+      else if (enc_count2 == 8) { waitST = 30000; extra = 13; }
+      else if (enc_count2 == 9) { waitST = 10000; extra = 13; }
+      else if (enc_count2 == 10) { waitST = 20000; extra = 12; }
+      else if (enc_count2 == 11) { waitST = 30000; extra = 11; }
+      else if (enc_count2 == 12) { waitST = 10000; extra = 11; }
+      else if (enc_count2 == 13) { waitST = 20000; extra = 10; }
+      else if (enc_count2 == 14) { waitST = 30000; extra = 9; }
+      else if (enc_count2 == 15) { waitST = 10000; extra = 9; }
+      else if (enc_count2 == 16) { waitST = 20000; extra = 8; }
+      else if (enc_count2 == 17) { waitST = 30000; extra = 7; }
+      else if (enc_count2 == 18) { waitST = 10000; extra = 7; }
+      else if (enc_count2 == 19) { waitST = 20000; extra = 6; }
+      else if (enc_count2 == 20) { waitST = 10000; extra = 6; }
+      else if (enc_count2 == 21) { waitST = 30000; extra = 5; }
+      else if (enc_count2 == 22) { waitST = 20000; extra = 5; }
+      else if (enc_count2 == 23) { waitST = 10000; extra = 5; }
+      else if (enc_count2 == 24) { waitST = 30000; extra = 4; }
+      else if (enc_count2 == 25) { waitST = 20000; extra = 4; }
+      else if (enc_count2 == 26) { waitST = 10000; extra = 4; }
+      else if (enc_count2 == 27) { waitST = 30000; extra = 3; }
+      else if (enc_count2 == 28) { waitST = 20000; extra = 3; }
+      else if (enc_count2 == 29) { waitST = 10000; extra = 3; }
+      else if (enc_count2 == 30) { waitST = 30000; extra = 2; }
+      else if (enc_count2 == 31) { waitST = 20000; extra = 2; }
+      else if (enc_count2 == 32) { waitST = 10000; extra = 2; }
+      else if (enc_count2 == 33) { waitST = 30000; extra = 1; }
+      else if (enc_count2 == 34) { waitST = 20000; extra = 1; }
+      else if (enc_count2 == 35) { waitST = 10000; extra = 1; }
+      else if (enc_count2 == 36) { waitST = 30000; }
+      else if (enc_count2 == 37) { waitST = 25000; }
+      else if (enc_count2 == 38) { waitST = 20000; }
+      else if (enc_count2 == 39) { waitST = 15000; }
+      else if (enc_count2 == 40) { waitST = 13000; }
+      else if (enc_count2 == 41) { waitST = 10000; }
+      else if (enc_count2 == 42) { waitST = 8000; }
+      else if (enc_count2 == 43) { waitST = 6000; }
+      else if (enc_count2 == 44) { waitST = 5000; }
+      else if (enc_count2 == 45) { waitST = 4000; }
+      else if (enc_count2 == 46) { waitST = 3000; }
+      else if (enc_count2 == 47) { waitST = 2500; }
+      else if (enc_count2 == 48) { waitST = 2000; }
+      else if (enc_count2 == 49) { waitST = 1600; }
+      else if (enc_count2 == 50) { waitST = 1300; }
+      else if (enc_count2 == 51) { waitST = 1000; }
+      
       releaseRun();
+      
     }
+    
     LDT3 = now3;
+    
   }
+  
   LBS3 = lightingStatus;
   
   // request release
@@ -342,198 +210,64 @@ void loop() {
       digitalWrite(releaseOutPin, HIGH);
     }
     else if (ss == 'L') {
-      if (enc_count2 == 1) {
-        waitST = 20000;
-        extra = 21;
-      }
-      else if (enc_count2 == 2) {
-        waitST = 30000;
-        extra = 19;
-      }
-      else if (enc_count2 == 3) {
-        waitST = 10000;
-        extra = 18;
-      }
-      else if (enc_count2 == 4) {
-        waitST = 20000;
-        extra = 16;
-      }
-      else if (enc_count2 == 5) {
-        waitST = 30000;
-        extra = 15;
-      }
-      else if (enc_count2 == 6) {
-        waitST = 10000;
-        extra = 15;
-      }
-      else if (enc_count2 == 7) {
-        waitST = 20000;
-        extra = 14;
-      }
-      else if (enc_count2 == 8) {
-        waitST = 30000;
-        extra = 13;
-      }
-      else if (enc_count2 == 9) {
-        waitST = 10000;
-        extra = 13;
-      }
-      else if (enc_count2 == 10) {
-        waitST = 20000;
-        extra = 12;
-      }
-      else if (enc_count2 == 11) {
-        waitST = 30000;
-        extra = 11;
-      }
-      else if (enc_count2 == 12) {
-        waitST = 10000;
-        extra = 11;
-      }
-      else if (enc_count2 == 13) {
-        waitST = 20000;
-        extra = 10;
-      }
-      else if (enc_count2 == 14) {
-        waitST = 30000;
-        extra = 9;
-      }
-      else if (enc_count2 == 15) {
-        waitST = 10000;
-        extra = 9;
-      }
-      else if (enc_count2 == 16) {
-        waitST = 20000;
-        extra = 8;
-      }
-      else if (enc_count2 == 17) {
-        waitST = 30000;
-        extra = 7;
-      }
-      else if (enc_count2 == 18) {
-        waitST = 10000;
-        extra = 7;
-      }
-      else if (enc_count2 == 19) {
-        waitST = 20000;
-        extra = 6;
-      }
-      else if (enc_count2 == 20) {
-        waitST = 10000;
-        extra = 6;
-      }
-      else if (enc_count2 == 21) {
-        waitST = 30000;
-        extra = 5;
-      }
-      else if (enc_count2 == 22) {
-        waitST = 20000;
-        extra = 5;
-      }
-      else if (enc_count2 == 23) {
-        waitST = 10000;
-        extra = 5;
-      }
-      else if (enc_count2 == 24) {
-        waitST = 30000;
-        extra = 4;
-      }
-      else if (enc_count2 == 25) {
-        waitST = 20000;
-        extra = 4;
-      }
-      else if (enc_count2 == 26) {
-        waitST = 10000;
-        extra = 4;
-      }
-      else if (enc_count2 == 27) {
-        waitST = 30000;
-        extra = 3;
-      }
-      else if (enc_count2 == 28) {
-        waitST = 20000;
-        extra = 3;
-      }
-      else if (enc_count2 == 29) {
-        waitST = 10000;
-        extra = 3;
-      }
-      else if (enc_count2 == 30) {
-        waitST = 30000;
-        extra = 2;
-      }
-      else if (enc_count2 == 31) {
-        waitST = 20000;
-        extra = 2;
-      }
-      else if (enc_count2 == 32) {
-        waitST = 10000;
-        extra = 2;
-      }
-      else if (enc_count2 == 33) {
-        waitST = 30000;
-        extra = 1;
-      }
-      else if (enc_count2 == 34) {
-        waitST = 20000;
-        extra = 1;
-      }
-      else if (enc_count2 == 35) {
-        waitST = 10000;
-        extra = 1;
-      }
-      else if (enc_count2 == 36) {
-        waitST = 30000;
-      }
-      else if (enc_count2 == 37) {
-        waitST = 25000;
-      }
-      else if (enc_count2 == 38) {
-        waitST = 20000;
-      }
-      else if (enc_count2 == 39) {
-        waitST = 15000;
-      }
-      else if (enc_count2 == 40) {
-        waitST = 13000;
-      }
-      else if (enc_count2 == 41) {
-        waitST = 10000;
-      }
-      else if (enc_count2 == 42) {
-        waitST = 8000;
-      }
-      else if (enc_count2 == 43) {
-        waitST = 6000;
-      }
-      else if (enc_count2 == 44) {
-        waitST = 5000;
-      }
-      else if (enc_count2 == 45) {
-        waitST = 4000;
-      }
-      else if (enc_count2 == 46) {
-        waitST = 3000;
-      }
-      else if (enc_count2 == 47) {
-        waitST = 2500;
-      }
-      else if (enc_count2 == 48) {
-        waitST = 2000;
-      }
-      else if (enc_count2 == 49) {
-        waitST = 1600;
-      }
-      else if (enc_count2 == 50) {
-        waitST = 1300;
-      }
-      else if (enc_count2 == 51) {
-        waitST = 1000;
-      }
+      if (enc_count2 == 1) { waitST = 20000; extra = 21; }
+      else if (enc_count2 == 2) { waitST = 30000; extra = 19; }
+      else if (enc_count2 == 3) { waitST = 10000; extra = 18; }
+      else if (enc_count2 == 4) { waitST = 20000; extra = 16; }
+      else if (enc_count2 == 5) { waitST = 30000; extra = 15; }
+      else if (enc_count2 == 6) { waitST = 10000; extra = 15; }
+      else if (enc_count2 == 7) { waitST = 20000; extra = 14; }
+      else if (enc_count2 == 8) { waitST = 30000; extra = 13; }
+      else if (enc_count2 == 9) { waitST = 10000; extra = 13; }
+      else if (enc_count2 == 10) { waitST = 20000; extra = 12; }
+      else if (enc_count2 == 11) { waitST = 30000; extra = 11; }
+      else if (enc_count2 == 12) { waitST = 10000; extra = 11; }
+      else if (enc_count2 == 13) { waitST = 20000; extra = 10; }
+      else if (enc_count2 == 14) { waitST = 30000; extra = 9; }
+      else if (enc_count2 == 15) { waitST = 10000; extra = 9; }
+      else if (enc_count2 == 16) { waitST = 20000; extra = 8; }
+      else if (enc_count2 == 17) { waitST = 30000; extra = 7; }
+      else if (enc_count2 == 18) { waitST = 10000; extra = 7; }
+      else if (enc_count2 == 19) { waitST = 20000; extra = 6; }
+      else if (enc_count2 == 20) { waitST = 10000; extra = 6; }
+      else if (enc_count2 == 21) { waitST = 30000; extra = 5; }
+      else if (enc_count2 == 22) { waitST = 20000; extra = 5; }
+      else if (enc_count2 == 23) { waitST = 10000; extra = 5; }
+      else if (enc_count2 == 24) { waitST = 30000; extra = 4; }
+      else if (enc_count2 == 25) { waitST = 20000; extra = 4; }
+      else if (enc_count2 == 26) { waitST = 10000; extra = 4; }
+      else if (enc_count2 == 27) { waitST = 30000; extra = 3; }
+      else if (enc_count2 == 28) { waitST = 20000; extra = 3; }
+      else if (enc_count2 == 29) { waitST = 10000; extra = 3; }
+      else if (enc_count2 == 30) { waitST = 30000; extra = 2; }
+      else if (enc_count2 == 31) { waitST = 20000; extra = 2; }
+      else if (enc_count2 == 32) { waitST = 10000; extra = 2; }
+      else if (enc_count2 == 33) { waitST = 30000; extra = 1; }
+      else if (enc_count2 == 34) { waitST = 20000; extra = 1; }
+      else if (enc_count2 == 35) { waitST = 10000; extra = 1; }
+      else if (enc_count2 == 36) { waitST = 30000; }
+      else if (enc_count2 == 37) { waitST = 25000; }
+      else if (enc_count2 == 38) { waitST = 20000; }
+      else if (enc_count2 == 39) { waitST = 15000; }
+      else if (enc_count2 == 40) { waitST = 13000; }
+      else if (enc_count2 == 41) { waitST = 10000; }
+      else if (enc_count2 == 42) { waitST = 8000; }
+      else if (enc_count2 == 43) { waitST = 6000; }
+      else if (enc_count2 == 44) { waitST = 5000; }
+      else if (enc_count2 == 45) { waitST = 4000; }
+      else if (enc_count2 == 46) { waitST = 3000; }
+      else if (enc_count2 == 47) { waitST = 2500; }
+      else if (enc_count2 == 48) { waitST = 2000; }
+      else if (enc_count2 == 49) { waitST = 1600; }
+      else if (enc_count2 == 50) { waitST = 1300; }
+      else if (enc_count2 == 51) { waitST = 1000; }
+      
       digitalWrite(releaseOutPin, HIGH);
       d = 1;
       startLightingT = millis();
+      
       releaseRun();
+      
     }
     else if (ss == 'D') {
       digitalWrite(releaseOutPin, LOW);
@@ -547,16 +281,14 @@ void loop() {
     }
   }
   else {
-    int now5 = millis();
-    if ((now5 - lastMyLEDT) > 200) {
+    if ((millis() - lastMyLEDT) > 200) {
       lastMyLEDT = 0;
       digitalWrite(LEDPin, LOW);
     }
   }
   if (d == 1) {
-    int now3 = millis();
     if (extra == 0) {
-      if ((now3 - startLightingT) > waitST) {
+      if ((millis() - startLightingT) > waitST) {
         digitalWrite(releaseOutPin, LOW);
         d = 0;
         startLightingT = 0;
@@ -573,8 +305,7 @@ void loop() {
       }
     }
   }
-  int now4 = millis();
-  if ( (now4 - lastLEDT) > 200 ) {
+  if ( (millis() - lastLEDT) > 200 ) {
     lastLEDT = millis();
     Serial.print('q');
   }
